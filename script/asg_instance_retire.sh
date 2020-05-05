@@ -60,7 +60,7 @@ done
 aws ec2 terminate-instances \
 --instance-ids ${INSTANCE_ID}
 
-echo "Started. Draining instances from the target group."
+echo "Started: Terminate instances."
 while true
 do
     sleep 30
@@ -70,7 +70,7 @@ do
     --query 'Reservations[].Instances[].State[].[Name]' --output text)
     # Check status match
     if [ "${INSTANCE_STATUS}" = "terminated" ] ; then
-        echo "Finished!!! Draining instances from the target group."
+        echo "Finished: Terminate instances."
         break
     else
         echo "In progress: Please wait for a while."
